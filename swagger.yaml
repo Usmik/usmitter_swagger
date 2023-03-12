@@ -1,0 +1,1370 @@
+swagger: '2.0'
+info:
+  title: Innotter API
+  description: Created by Usmik
+  termsOfService: https://www.google.com/policies/terms/
+  contact:
+    email: contact@snippets.local
+  license:
+    name: BSD License
+  version: v1
+host: localhost:8000
+schemes:
+  - http
+basePath: /api/v1
+consumes:
+  - application/json
+produces:
+  - application/json
+securityDefinitions:
+  Basic:
+    type: basic
+security:
+  - Basic: []
+paths:
+  /pages/:
+    get:
+      operationId: pages_list
+      description: ''
+      parameters:
+        - name: search
+          in: query
+          description: A search term.
+          required: false
+          type: string
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Page'
+      tags:
+        - pages
+    post:
+      operationId: pages_create
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/PageRetrieve'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/PageRetrieve'
+      tags:
+        - pages
+    parameters: []
+  /pages/{id}/:
+    get:
+      operationId: pages_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/PageRetrieve'
+      tags:
+        - pages
+    put:
+      operationId: pages_update
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/PageRetrieve'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/PageRetrieve'
+      tags:
+        - pages
+    patch:
+      operationId: pages_partial_update
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/PageRetrieve'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/PageRetrieve'
+      tags:
+        - pages
+    delete:
+      operationId: pages_delete
+      description: ''
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+        - pages
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+  /pages/{id}/accept_all_requests/:
+    patch:
+      operationId: pages_accept_all_requests
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/PageRetrieve'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/PageRetrieve'
+      tags:
+        - pages
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+  /pages/{id}/accept_request/{request_pk}/:
+    patch:
+      operationId: pages_accept_request
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/PageRetrieve'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/PageRetrieve'
+      tags:
+        - pages
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+      - name: request_pk
+        in: path
+        required: true
+        type: string
+  /pages/{id}/decline_all_requests/:
+    patch:
+      operationId: pages_decline_all_requests
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/PageRetrieve'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/PageRetrieve'
+      tags:
+        - pages
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+  /pages/{id}/decline_request/{request_pk}/:
+    patch:
+      operationId: pages_decline_request
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/PageRetrieve'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/PageRetrieve'
+      tags:
+        - pages
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+      - name: request_pk
+        in: path
+        required: true
+        type: string
+  /pages/{id}/follow/:
+    patch:
+      operationId: pages_follow
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/PageRetrieve'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/PageRetrieve'
+      tags:
+        - pages
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+  /pages/{id}/follow_requests/:
+    get:
+      operationId: pages_follow_requests
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/PageUser'
+      tags:
+        - pages
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+  /pages/{id}/followers/:
+    get:
+      operationId: pages_followers
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/PageUser'
+      tags:
+        - pages
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+  /pages/{id}/new_post/:
+    post:
+      operationId: pages_new_post
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/PageRetrieve'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/PageRetrieve'
+      tags:
+        - pages
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+  /pages/{id}/posts/:
+    get:
+      operationId: pages_posts
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Posts'
+      tags:
+        - pages
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+  /pages/{id}/private/:
+    patch:
+      operationId: pages_private
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/PageRetrieve'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/PageRetrieve'
+      tags:
+        - pages
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+  /pages/{id}/public/:
+    patch:
+      operationId: pages_public
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/PageRetrieve'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/PageRetrieve'
+      tags:
+        - pages
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+  /pages/{id}/rest_stats/:
+    get:
+      operationId: pages_rest_stats
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/PageRetrieve'
+      tags:
+        - pages
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+  /pages/{id}/set_unblock_date/:
+    patch:
+      operationId: pages_set_unblock_date
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/SimplePage'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/SimplePage'
+      tags:
+        - pages
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+  /pages/{id}/stats/:
+    get:
+      operationId: pages_stats
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/PageRetrieve'
+      tags:
+        - pages
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+  /pages/{id}/tag/:
+    post:
+      operationId: pages_tag_create
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/PageRetrieve'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/PageRetrieve'
+      tags:
+        - pages
+    delete:
+      operationId: pages_tag_delete
+      description: ''
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+        - pages
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+  /pages/{id}/unfollow/:
+    patch:
+      operationId: pages_unfollow
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/PageRetrieve'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/PageRetrieve'
+      tags:
+        - pages
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+  /posts/:
+    get:
+      operationId: posts_list
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Post'
+      tags:
+        - posts
+    post:
+      operationId: posts_create
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Post'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/Post'
+      tags:
+        - posts
+    parameters: []
+  /posts/news/:
+    get:
+      operationId: posts_news
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Post'
+      tags:
+        - posts
+    parameters: []
+  /posts/{id}/:
+    get:
+      operationId: posts_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/PostRetrieve'
+      tags:
+        - posts
+    put:
+      operationId: posts_update
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Post'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Post'
+      tags:
+        - posts
+    patch:
+      operationId: posts_partial_update
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Post'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Post'
+      tags:
+        - posts
+    delete:
+      operationId: posts_delete
+      description: ''
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+        - posts
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+  /posts/{id}/like/:
+    patch:
+      operationId: posts_like
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/PostRetrieve'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/PostRetrieve'
+      tags:
+        - posts
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+  /posts/{id}/likes/:
+    get:
+      operationId: posts_likes
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/PostUser'
+      tags:
+        - posts
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+  /posts/{id}/replies/:
+    get:
+      operationId: posts_replies
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/Post'
+      tags:
+        - posts
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+  /posts/{id}/unlike/:
+    patch:
+      operationId: posts_unlike
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/PostRetrieve'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/PostRetrieve'
+      tags:
+        - posts
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+  /users/:
+    get:
+      operationId: users_list
+      description: ''
+      parameters:
+        - name: search
+          in: query
+          description: A search term.
+          required: false
+          type: string
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/User'
+      tags:
+        - users
+    post:
+      operationId: users_create
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/User'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/User'
+      tags:
+        - users
+    parameters: []
+  /users/login/:
+    post:
+      operationId: users_login
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Login'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/Login'
+      tags:
+        - users
+    parameters: []
+  /users/profile/:
+    get:
+      operationId: users_profile_read
+      description: ''
+      parameters:
+        - name: search
+          in: query
+          description: A search term.
+          required: false
+          type: string
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/MyUser'
+      tags:
+        - users
+    put:
+      operationId: users_profile_update
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/MyUser'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/MyUser'
+      tags:
+        - users
+    parameters: []
+  /users/register/:
+    post:
+      operationId: users_register
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/Registration'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/Registration'
+      tags:
+        - users
+    parameters: []
+  /users/{id}/:
+    get:
+      operationId: users_read
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/User'
+      tags:
+        - users
+    put:
+      operationId: users_update
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/User'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/User'
+      tags:
+        - users
+    patch:
+      operationId: users_partial_update
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/User'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/User'
+      tags:
+        - users
+    delete:
+      operationId: users_delete
+      description: ''
+      parameters: []
+      responses:
+        '204':
+          description: ''
+      tags:
+        - users
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+  /users/{id}/block/:
+    patch:
+      operationId: users_block
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/User'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/User'
+      tags:
+        - users
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+  /users/{id}/liked/:
+    get:
+      operationId: users_liked
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/UserPost'
+      tags:
+        - users
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+  /users/{id}/new_page/:
+    post:
+      operationId: users_new_page
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/NewPage'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/NewPage'
+      tags:
+        - users
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+  /users/{id}/pages/:
+    get:
+      operationId: users_pages
+      description: ''
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/User'
+      tags:
+        - users
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+  /users/{id}/set_image/:
+    patch:
+      operationId: users_set_image
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/UserImage'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/UserImage'
+      tags:
+        - users
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+  /users/{id}/unblock/:
+    patch:
+      operationId: users_unblock
+      description: ''
+      parameters:
+        - name: data
+          in: body
+          required: true
+          schema:
+            $ref: '#/definitions/User'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/User'
+      tags:
+        - users
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+definitions:
+  Page:
+    required:
+      - name
+      - puid
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      name:
+        title: Name
+        type: string
+        maxLength: 80
+        minLength: 1
+      puid:
+        title: Puid
+        type: string
+        maxLength: 30
+        minLength: 1
+      tags:
+        type: array
+        items:
+          type: string
+        readOnly: true
+        uniqueItems: true
+      is_private:
+        title: Is private
+        type: boolean
+        readOnly: true
+  PageUser:
+    required:
+      - username
+      - email
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      username:
+        title: Username
+        description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+          only.
+        type: string
+        pattern: ^[\w.@+-]+$
+        maxLength: 150
+        minLength: 1
+      email:
+        title: Email
+        type: string
+        format: email
+        maxLength: 254
+        minLength: 1
+      is_blocked:
+        title: Is blocked
+        type: boolean
+  PageRetrieve:
+    required:
+      - name
+      - puid
+      - description
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      name:
+        title: Name
+        type: string
+        maxLength: 80
+        minLength: 1
+      puid:
+        title: Puid
+        type: string
+        maxLength: 30
+        minLength: 1
+      tags:
+        type: array
+        items:
+          type: string
+        readOnly: true
+        uniqueItems: true
+      description:
+        title: Description
+        type: string
+        minLength: 1
+      owner:
+        $ref: '#/definitions/PageUser'
+      is_private:
+        title: Is private
+        type: boolean
+        readOnly: true
+      unblock_date:
+        title: Unblock date
+        type: string
+        format: date-time
+        readOnly: true
+        x-nullable: true
+  Posts:
+    required:
+      - page
+      - content
+    type: object
+    properties:
+      page:
+        title: Page
+        type: integer
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      content:
+        title: Content
+        type: string
+        maxLength: 180
+        minLength: 1
+      reply_to:
+        title: Reply to
+        type: integer
+        x-nullable: true
+      created_at:
+        title: Created at
+        type: string
+        format: date-time
+        readOnly: true
+  SimplePage:
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      unblock_date:
+        title: Unblock date
+        type: string
+        format: date-time
+        x-nullable: true
+  Reply:
+    required:
+      - content
+      - page
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      content:
+        title: Content
+        type: string
+        maxLength: 180
+        minLength: 1
+      created_at:
+        title: Created at
+        type: string
+        format: date-time
+        readOnly: true
+      page:
+        title: Page
+        type: integer
+  PostPages:
+    required:
+      - name
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      name:
+        title: Name
+        type: string
+        maxLength: 80
+        minLength: 1
+      is_private:
+        title: Is private
+        type: boolean
+      is_blocked:
+        title: Is blocked
+        type: string
+        readOnly: true
+  Post:
+    required:
+      - content
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      content:
+        title: Content
+        type: string
+        maxLength: 180
+        minLength: 1
+      reply_to:
+        $ref: '#/definitions/Reply'
+      created_at:
+        title: Created at
+        type: string
+        format: date-time
+        readOnly: true
+      page:
+        $ref: '#/definitions/PostPages'
+  PostRetrieve:
+    required:
+      - content
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      content:
+        title: Content
+        type: string
+        maxLength: 180
+        minLength: 1
+      reply_to:
+        $ref: '#/definitions/Reply'
+      created_at:
+        title: Created at
+        type: string
+        format: date-time
+        readOnly: true
+      updated_at:
+        title: Updated at
+        type: string
+        format: date-time
+        readOnly: true
+      page:
+        $ref: '#/definitions/PostPages'
+      likes_count:
+        title: Likes count
+        type: string
+        readOnly: true
+  PostUser:
+    required:
+      - username
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      username:
+        title: Username
+        description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+          only.
+        type: string
+        pattern: ^[\w.@+-]+$
+        maxLength: 150
+        minLength: 1
+  User:
+    required:
+      - title
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      username:
+        title: Username
+        description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+          only.
+        type: string
+        readOnly: true
+        minLength: 1
+      email:
+        title: Email
+        type: string
+        format: email
+        readOnly: true
+        minLength: 1
+      title:
+        title: Title
+        type: string
+        maxLength: 80
+        minLength: 1
+      role:
+        title: Role
+        type: string
+        enum:
+          - user
+          - moderator
+          - admin
+        readOnly: true
+      is_blocked:
+        title: Is blocked
+        type: boolean
+        readOnly: true
+      image_url:
+        title: Image url
+        type: string
+        readOnly: true
+  Login:
+    required:
+      - username
+      - password
+    type: object
+    properties:
+      username:
+        title: Username
+        type: string
+        maxLength: 150
+        minLength: 1
+      password:
+        title: Password
+        type: string
+        maxLength: 128
+        minLength: 1
+      token:
+        title: Token
+        type: string
+        readOnly: true
+        maxLength: 255
+        minLength: 1
+  MyUser:
+    required:
+      - username
+      - email
+      - password
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      username:
+        title: Username
+        description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+          only.
+        type: string
+        pattern: ^[\w.@+-]+$
+        maxLength: 150
+        minLength: 1
+      email:
+        title: Email
+        type: string
+        format: email
+        maxLength: 254
+        minLength: 1
+      password:
+        title: Password
+        type: string
+        maxLength: 128
+        minLength: 8
+      token:
+        title: Token
+        type: string
+        readOnly: true
+  Registration:
+    required:
+      - username
+      - email
+      - password
+    type: object
+    properties:
+      username:
+        title: Username
+        description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+          only.
+        type: string
+        pattern: ^[\w.@+-]+$
+        maxLength: 150
+        minLength: 1
+      email:
+        title: Email
+        type: string
+        format: email
+        maxLength: 254
+        minLength: 1
+      password:
+        title: Password
+        type: string
+        maxLength: 128
+        minLength: 8
+      token:
+        title: Token
+        type: string
+        readOnly: true
+        maxLength: 255
+        minLength: 1
+  UserPost:
+    required:
+      - content
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      content:
+        title: Content
+        type: string
+        maxLength: 180
+        minLength: 1
+      created_at:
+        title: Created at
+        type: string
+        format: date-time
+        readOnly: true
+  NewPage:
+    required:
+      - name
+      - puid
+      - owner
+    type: object
+    properties:
+      id:
+        title: ID
+        type: integer
+        readOnly: true
+      name:
+        title: Name
+        type: string
+        maxLength: 80
+        minLength: 1
+      puid:
+        title: Puid
+        type: string
+        maxLength: 30
+        minLength: 1
+      owner:
+        title: Owner
+        type: integer
+  UserImage:
+    type: object
+    properties:
+      file:
+        title: File
+        type: string
+        readOnly: true
+        format: uri
